@@ -3,6 +3,7 @@
   <groupId>com.springboot.learning</groupId>
   <artifactId>springboot-helloworld</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
   <description>创建一个简单的springboot项目</description>
   <developers>
   	<developer>
