@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <description>创建一个简单的springboot项目</description>
+  
   <developers>
   	<developer>
   		<name>王晓杰</name>

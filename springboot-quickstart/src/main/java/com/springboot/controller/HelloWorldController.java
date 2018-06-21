@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 		resultMap.put("message", "success");
 		return resultMap;
 	}
-	
+
+
 	//springboot启动主函数
 	public static void main(String[] args) {
 		SpringApplication.run(HelloWorldController.class, args);
