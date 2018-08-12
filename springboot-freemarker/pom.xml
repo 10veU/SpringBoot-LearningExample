@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.springboot.learning</groupId>
-	<artifactId>springboot_freemaker</artifactId>
+	<artifactId>springboot_freemarker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>springboot-freemaker</name>
+	<name>springboot-freemarker</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
