@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.springboot.learning</groupId>
-	<artifactId>springboot_thymeleaf</artifactId>
+	<artifactId>springboot_jsp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
