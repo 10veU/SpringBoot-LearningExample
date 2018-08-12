@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>ThymeLeaf Tag</title>
+	<style type="text/css">
+		#box {
+			background-color: #D3F8F8;
+			height: 200px;
+			width: 200px;
+			border: 1px solid black;
+			margin:5px;
+		}
+		#user {
+			margin: 10px;
+		}
+	</style>
+	<script th:src="@{/static/js/hello.js}"></script>
+</head>
+<body>
+	<h1>Tyhmeleaf Tags Of Usage</h1>
+	<h3>基本标签的使用</h3>
+	<div id="box">
+		<div id="user">
+		用户姓名：<input th:value = "${user.name}"/><br/>
+		用户年龄：<input th:value = "${user.age}"/><br/>
+		用户生日：<input th:value = "${user.birthday}"/><br/>
+		用户生日：<input th:value = "${#dates.format(user.birthday,'yyyy-MM-dd')}"/><br/>
+		</div>
+	</div>
+	
+	<div id = "box"  style="background-color:#a8d7ae;">
+		<div id = "user" th:object="${user}">
+		用户姓名：<input th:id = "*{name}" th:name = "*{name}" th:value = "*{name}"/><br/>
+		用户年龄：<input th:value = "*{age}"/><br/>
+		用户生日：<input th:value = "*{#dates.format(birthday,'yyyy-MM-dd hh:mm:ss')}"/><br/>
+		</div>
+	</div>
+	<h3>text与utext</h3>
+	<span th:text = "${user.desc}"></span><br/>
+	<span th:utext = "${user.desc}"></span>
+	<h3>URL</h3>
+	html:<a href = "http://www.baidu.com">百度</a>
+	thymeleaf:<a th:href = "@{http://www.baidu.com}">百度</a>
+	<h3>页面引入js/CSS</h3>
+	<ul>
+		<li>首先在application.properties配置文件中配置静态资源的加载路径</li>
+		<li>在<font color = "red">src/main/resource</font>的static文件夹下创建js文件</li>
+		<li><xmp>在页面直接这样引用：<script th:src = "@{/static/js/hello.js}"></script></xmp></li>
+	</ul>
+	<h3>form表单</h3>
+	html方式：
+	<form action="postUser" method="post"  th:object="${user}">
+		用户名：<input name="name" type="text" th:value="*{name}"/><br/>
+		用户年龄：<input name="age" type="text" th:value = "*{age}"/><br/>
+		<input name="submit" type="submit" value="提交"/>
+	</form>
+	thymeleaf方式：
+	<form th:action="@{postUser}" th:method="post" th:object="${user}">
+		用户名：<input  type="text" th:field="*{name}"/><br/>
+		用户年龄：<input  type="text" th:field = "*{age}"/><br/>
+		<input name="submit" type="submit" value="提交"/>
+	</form>
+	
+	<h3>判断标签(th:if)</h3>
+	<div th:object="${user}">
+	<div th:if="${user.age} ge 18">大于等于18岁</div>
+	<div th:if="*{age} le 18">小于等于18岁</div>
+	<div th:if="*{age}==18">十八的你是一朵花</div>
+	<div th:if="*{age} gt 18">过了十八长大了</div>
+	<div th:if="*{age} lt 18">未成年的你</div>
+	</div>
+	<h3>选择框</h3>
+	<select>
+	<option>请选择</option>
+	<option th:selected="${user.name eq 'springboot'}">springboot</option>
+	<option th:selected="${user.name eq '大大蜡笔小小新'}">大大蜡笔小小新</option>
+	<option th:selected="${user.name eq 'Thymeleaf'}">Thymeleaf</option>
+	</select>
+	<h3>循环遍历</h3>
+	<table border = "1">
+		<thead>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>年龄备注</th>
+			<th>生日</th>
+		</thead>
+		<tbody>
+			<tr th:each = "person:${userList}">
+				<td th:text=" ${person.name}"></td>
+				<td th:text=" ${person.age}"></td>
+				<td th:text=" ${person.age gt '18'}?花要落了:一朵花">18</td>
+				<td th:text=" ${#dates.format(person.birthday,'yyyy-MM-dd hh:mm:ss')}"></td>
+			</tr>
+		</tbody>
+		<tfoot>
+		</tfoot>
+	</table>
+	<h3>th:case</h3>
+	<div th:switch="${user.name}">
+		<p th:case="'大大蜡笔小小新'">超级会员</p>
+		<p th:case="#{roles.manager}">高级会员</p>
+		<p th:case="#{roles.systemmanager}">系统管理员</p>
+		<p th:case="*">普通会员</p>
+	</div>
+	<h3>图片</h3>
+	html方式：
+	<img alt="小猪佩奇" src="/static/img/peppapig.jpg"/>
+	Thymeleaf方式：
+	<img alt="小猪佩奇" th:src="@{/static/img/peppapig.jpg}"/>
+</body>
+</html>
